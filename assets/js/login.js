@@ -54,7 +54,7 @@ $(function () {
                 localStorage.setItem('token', res.token)
                 layer.msg(res.message)
                 console.log(res.token)
-                location.href = '/E:/Html/node/05-%E6%A1%88%E4%BE%8B/index.html'
+                location.href = 'http://localhost:8080/05-%E6%A1%88%E4%BE%8B/index.html'
             }
         });
     })
