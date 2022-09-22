@@ -2,7 +2,7 @@ $(function () {
     let form = layui.form
     let layer = layui.layer
     form.verify({
-        nickname: function (value,item) {
+        nickname: function (value, item) {
             if (value.length > 6) {
                 return '昵称必须在1~6个之间'
             }
@@ -14,7 +14,7 @@ $(function () {
             type: "GET",
             url: "/my/userinfo",
             success: function (res) {
-                if (res.status !== 0) {
+                if (res.code !== 0) {
                     return layer.msg('获取用户信息失败')
                 }
                 // console.log(res);
@@ -33,11 +33,11 @@ $(function () {
     $('.layui-form').on('submit', function (e) {
         e.preventDefault()
         $.ajax({
-            type: 'POST',
+            type: 'PUT',
             url: '/my/userinfo',
             data: $(this).serialize(),
             success: function (res) {
-                if (res.status !== 0) {
+                if (res.code !== 0) {
                     return layer.msg('更新失败')
                 }
                 layer.msg('跟新成功')

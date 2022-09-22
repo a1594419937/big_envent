@@ -30,8 +30,8 @@ $(function () {
             password: $('#form_reg [name=password]').val()
         }
         console.log(data)
-        $.post("/api/reguser", data, function (res) {
-            if (res.status != 0) {
+        $.post("api/reg", data, function (res) {
+            if (res.code != 0) {
                 return layer.msg(res.message)
             }
             layer.msg(res.message)
@@ -39,22 +39,20 @@ $(function () {
             $('#link_login').click()
         })
     })
-
-
-    $('#form-login').submit(function (e) {
+    $('#form-login').on('submit', function (e) {
         e.preventDefault()
         $.ajax({
             type: "POST",
-            url: "/api/login",
+            url: '/api/login',
             data: $(this).serialize(),
             success: function (res) {
-                if (res.status !== 0) {
+                if (res.code !== 0) {
                     return layer.msg(res.message)
                 }
+                console.log(res)
                 localStorage.setItem('token', res.token)
-                layer.msg(res.message)
-                console.log(res.token)
-                location.href = 'http://localhost:8080/05-%E6%A1%88%E4%BE%8B/index.html'
+                // layer.msg(res.message)
+                location.href = 'http://localhost:80/05-%E6%A1%88%E4%BE%8B/index.html'
             }
         });
     })

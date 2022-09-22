@@ -23,7 +23,7 @@ $(function () {
             url: "/my/updatepwd",
             data: $(this).serialize(),
             success: function (res) {
-                if (res.status !== 0) {
+                if (res.code !== 0) {
                     return layer.msg('修改密码失败')
                 }
                 layer.msg('修改密码成功')
